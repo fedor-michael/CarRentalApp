@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="20231001-fedormichal-01" author="fedormichal">
+        <sql>
+            create table cars
+            (
+                id         bigint not null AUTO_INCREMENT,
+                vin       varchar(255),
+                production_year    integer,
+                brand varchar(255),
+                model varchar(255),
+                mileage integer,
+                registration varchar(255),
+                is_available    boolean,
+                deleted    boolean default false,
+                primary key (id)
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="20231001-fedormichal-02" author="fedormichal">
+        <validCheckSum>any</validCheckSum>
+        <sql>
+            create table rents
+            (
+                id       bigint not null AUTO_INCREMENT,
+                date_from    date,
+                date_to    date,
+                status varchar(255),
+                car_id bigint,
+                user_id bigint,
+                start_mileage integer,
+                end_mileage integer,
+                deleted  boolean default false,
+                primary key (id)
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="20231001-fedormichal-03" author="fedormichal">
+        <sql>
+            create table users
+            (
+                id      bigint not null AUTO_INCREMENT,
+                name    varchar(255),
+                surname varchar(255),
+                person_id varchar(255),
+                phone_number bigint,
+                email   varchar(255),
+                deleted boolean default false,
+                primary key (id)
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="20231001-fedormichal-04" author="fedormichal">
+        <sql>
+            create table import_status
+            (
+                id            bigint       not null AUTO_INCREMENT,
+                entity        varchar(255),
+                submit_time   timestamp    not null,
+                start_time    timestamp,
+                file_name     varchar(255) not null,
+                status        varchar(10)  not null,
+                processed     int          not null,
+                failed_reason varchar(255),
+                primary key (id)
+            );
+
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
