@@ -7,44 +7,44 @@
 
     <changeSet id="20231002-fedormichal-01" author="fedormichal">
         <sql>
-            insert into cars (vin, production_year, brand, model, mileage, registration, is_available)
+            insert into cars (vin, productionYear, brand, model, mileage, registration, isAvailable)
             values ('WBA12345671', 2015, 'BMW', 'M3', 12000, 'WI 25678', false);
-            insert into cars (vin, production_year, brand, model, mileage, registration, is_available)
+            insert into cars (vin, productionYear, brand, model, mileage, registration, isAvailable)
             values ('WBA12345672', 2016, 'BMW', 'M4', 21000, 'WI 25984', true);
-            insert into cars (vin, production_year, brand, model, mileage, registration, is_available)
+            insert into cars (vin, productionYear, brand, model, mileage, registration, isAvailable)
             values ('WBA12345673', 2017, 'BMW', 'M5 Competition', 10000, 'WE 15678', true);
-            insert into cars (vin, production_year, brand, model, mileage, registration, is_available)
+            insert into cars (vin, productionYear, brand, model, mileage, registration, isAvailable)
             values ('WBA12345674', 2018, 'BMW', 'M6', 10000, 'WB 21178', true);
-            insert into cars (vin, production_year, brand, model, mileage, registration, is_available)
+            insert into cars (vin, productionYear, brand, model, mileage, registration, isAvailable)
             values ('WBA12345675', 2019, 'BMW', '750Li', 5000, 'WI N777', true);
         </sql>
     </changeSet>
     <changeSet id="20231002-fedormichal-02" author="fedormichal">
         <sql>
-            insert into rents (date_from, date_to, status, car_id, user_id, start_mileage, end_mileage)
+            insert into rents (dateFrom, dateTo, status, carId, userId, startMileage, endMileage)
             values ('2023-01-02', '2023-01-10', 'DONE', 1, 1, 10000, 11000);
-            insert into rents (date_from, date_to, status, car_id, user_id, start_mileage, end_mileage)
+            insert into rents (dateFrom, dateTo, status, carId, userId, startMileage, endMileage)
             values ('2023-01-02', '2023-01-10', 'DONE', 2, 2, 20000, 21000);
-            insert into rents (date_from, date_to, status, car_id, user_id, start_mileage, end_mileage)
+            insert into rents (dateFrom, dateTo, status, carId, userId, startMileage, endMileage)
             values ('2023-02-02', '2023-02-10', 'DONE', 1, 3, 11000, 12000);
-            insert into rents (date_from, date_to, status, car_id, user_id, start_mileage, end_mileage)
+            insert into rents (dateFrom, dateTo, status, carId, userId, startMileage, endMileage)
             values ('2023-03-02', '2023-03-10', 'DONE', 3, 1, 10000, 10500);
-            insert into rents (date_from, date_to, status, car_id, user_id, start_mileage, end_mileage)
+            insert into rents (dateFrom, dateTo, status, carId, userId, startMileage, endMileage)
             values ('2023-06-02', '2024-06-02', 'ACTIVE', 1, 1, 12000, 25000);
         </sql>
     </changeSet>
 
     <changeSet id="20231002-fedormichal-03" author="fedormichal">
         <sql>
-            insert into users (name, surname, person_id, phone_number, email)
+            insert into users (name, surname, personId, phoneNumber, email)
             values ('John', 'Travolta', 123456781, 0048501635954, 'john.travolta@gmail.com');
-            insert into users (name, surname, person_id, phone_number, email)
+            insert into users (name, surname, personId, phoneNumber, email)
             values ('Jack', 'Kowalsky', 123456782, 0048501635955, 'jack.kowalsky@gmail.com');
-            insert into users (name, surname, person_id, phone_number, email)
+            insert into users (name, surname, personId, phoneNumber, email)
             values ('Michal', 'Fedor', 123456783, 0048501635956, 'michal.fedor@gmail.com');
-            insert into users (name, surname, person_id, phone_number, email)
+            insert into users (name, surname, personId, phoneNumber, email)
             values ('Jack', 'Carpenter', 123456784, 0048501635957, 'jack.carpenter@gmail.com');
-            insert into users (name, surname, person_id, phone_number, email)
+            insert into users (name, surname, personId, phoneNumber, email)
             values ('John', 'Black', 123456785, 0048501635958, 'john.black@gmail.com');
         </sql>
     </changeSet>

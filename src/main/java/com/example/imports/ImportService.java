@@ -1,7 +1,6 @@
 package com.example.imports;
 
 import com.example.car.importvalidation.CarValidator;
-import com.example.exception.EntityNotFoundException;
 import com.example.imports.exception.FileUploadException;
 import com.example.imports.exception.InvalidInsertArgumentsException;
 import com.example.imports.model.ImportStatus;
@@ -22,7 +21,7 @@ import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -30,7 +29,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
-import static com.example.imports.model.ImportStatus.*;
+import static com.example.imports.model.ImportStatus.EntityType;
 
 @Service
 @RequiredArgsConstructor
@@ -58,10 +57,10 @@ public class ImportService {
     @Async("importExecutor")
     public void uploadCsvToDb(byte[] file, long importStatusId, EntityType entity) {
         log.info("importing " + entity.toString().toLowerCase());
-        importStatusRepository.updateToProcessing(importStatusId, LocalDateTime.now());
+        //importStatusRepository.updateToProcessing(importStatusId, LocalDateTime.now()); fixme
+        importStatusRepository.updateToProcessing(importStatusId, new Timestamp(System.currentTimeMillis()));
         AtomicInteger counter = new AtomicInteger(0);
         AtomicLong start = new AtomicLong(System.currentTimeMillis());
-
         try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader((new ByteArrayInputStream(file))))) {
             bufferedReader
                     .lines()
@@ -77,15 +76,15 @@ public class ImportService {
                         }
                         throw new RuntimeException("Entity " + entity + " is not in scope.");
                     })
-                    .peek(map -> {
-                        if (entity.equals(EntityType.CAR)) {
-                            validateCarInsertArguments(map);
-                        } else if (entity.equals(EntityType.RENT)) {
-                            validateRentInsertArguments(map);
-                        } else if (entity.equals(EntityType.USER)) {
-                            validateUserInsertArguments(map);
-                        }
-                    })
+//                    .peek(map -> {
+//                        if (entity.equals(EntityType.CAR)) {
+//                            validateCarInsertArguments(map);
+//                        } else if (entity.equals(EntityType.RENT)) {
+//                            validateRentInsertArguments(map);
+//                        } else if (entity.equals(EntityType.USER)) {
+//                            validateUserInsertArguments(map);
+//                        }
+//                    })
                     .peek(line -> logTimeAndUpdateProcess(counter, start, importStatusId))
                     .forEach(v -> {
                         if (entity.equals(EntityType.CAR)) {
@@ -96,9 +95,10 @@ public class ImportService {
                             userSaveJdbc(v);
                         }
                     });
+            System.out.println("debug3");
         } catch (Exception e) {
-            importStatusRepository.updateProcess(importStatusId, counter.get());
-            importStatusRepository.updateToFailed(importStatusId, ("Failed area in file's line " + counter.get()));
+            //importStatusRepository.updateProcess(importStatusId, counter.get());
+            //importStatusRepository.updateToFailed(importStatusId, ("Failed area in file's line " + counter.get()));
             throw new FileUploadException(e.getMessage());
         }
 
@@ -132,12 +132,12 @@ public class ImportService {
 
     private Map<String, Object> toCarParameters(String[] args) {
         return Map.of("vin", args[0],
-                "year", new BigDecimal(args[1]),
+                "productionYear", new BigDecimal(args[1]),
                 "brand", args[2],
                 "model", args[3],
                 "mileage", new BigDecimal(args[4]),
                 "registration", args[5],
-                "available", args[6],
+                "isAvailable", args[6],
                 // todo przypominajka: tu nie daje żadnych wypożyczeń
                 "deleted", false);
     }

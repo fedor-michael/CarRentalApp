@@ -20,14 +20,14 @@ import org.hibernate.annotations.Where;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "import_status")
+@Table(name = "importStatus")
 @NoArgsConstructor
 @Getter
 @Setter
 @EqualsAndHashCode(of = "id")
 @ToString
 @Where(clause = "deleted = false")
-@SQLDelete(sql = "update import_status set deleted = true where id = ?1") // todo zmieni pewnie się przy PostreSQL
+@SQLDelete(sql = "update importStatus set deleted = true where id = ?1") // todo zmieni pewnie się przy PostreSQL
 
 public class ImportStatus {
     @Id

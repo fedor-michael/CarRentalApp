@@ -42,10 +42,10 @@ public class Rent {
     @Enumerated(EnumType.STRING)
     private RentStatus status;
     @ManyToOne
-    @JoinColumn(name = "car_id") //todo tu może być zmiana przy postgreSQL
+    @JoinColumn(name = "carId") //todo tu może być zmiana przy postgreSQL
     private Car car;
     @ManyToOne
-    @JoinColumn(name = "user_id") //todo tu może być zmiana przy postgreSQL
+    @JoinColumn(name = "userId") //todo tu może być zmiana przy postgreSQL
     private User user;
     private Integer startMileage;
     private Integer endMileage;

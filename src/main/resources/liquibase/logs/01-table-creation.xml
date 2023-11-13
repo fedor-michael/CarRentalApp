@@ -9,16 +9,16 @@
         <sql>
             create table cars
             (
-                id         bigint not null AUTO_INCREMENT,
+                id         bigint not null AUTO_INCREMENT primary key,
                 vin       varchar(255),
-                production_year    integer,
+                productionYear    integer,
                 brand varchar(255),
                 model varchar(255),
-                mileage integer,
+                mileage int,
                 registration varchar(255),
-                is_available    boolean,
-                deleted    boolean default false,
-                primary key (id)
+                isAvailable    boolean,
+                deleted    boolean default false
+--                 primary key (id)
             );
         </sql>
     </changeSet>
@@ -27,16 +27,16 @@
         <sql>
             create table rents
             (
-                id       bigint not null AUTO_INCREMENT,
-                date_from    date,
-                date_to    date,
+                id       bigint not null AUTO_INCREMENT primary key,
+                dateFrom    date,
+                dateTo    date,
                 status varchar(255),
-                car_id bigint,
-                user_id bigint,
-                start_mileage integer,
-                end_mileage integer,
-                deleted  boolean default false,
-                primary key (id)
+                carId bigint,
+                userId bigint,
+                startMileage int,
+                endMileage int,
+                deleted  boolean default false
+--                 primary key (id)
             );
         </sql>
     </changeSet>
@@ -44,30 +44,31 @@
         <sql>
             create table users
             (
-                id      bigint not null AUTO_INCREMENT,
+                id      bigint not null AUTO_INCREMENT primary key,
                 name    varchar(255),
                 surname varchar(255),
-                person_id varchar(255),
-                phone_number bigint,
+                personId varchar(255),
+                phoneNumber bigint,
                 email   varchar(255),
-                deleted boolean default false,
-                primary key (id)
+                deleted boolean default false
+--                 primary key (id)
             );
         </sql>
     </changeSet>
     <changeSet id="20231001-fedormichal-04" author="fedormichal">
         <sql>
-            create table import_status
+            create table importStatus
             (
-                id            bigint       not null AUTO_INCREMENT,
-                entity        varchar(255),
-                submit_time   timestamp    not null,
-                start_time    timestamp,
-                file_name     varchar(255) not null,
-                status        varchar(10)  not null,
-                processed     int          not null,
-                failed_reason varchar(255),
-                primary key (id)
+                id           bigint       not null AUTO_INCREMENT primary key,
+                entity       varchar(255),
+                submitTime   timestamp    not null,
+                startTime    timestamp,
+                fileName     varchar(255) not null,
+                status       varchar(255) not null,
+                processed    int          not null,
+                failedReason varchar(255),
+                deleted      boolean default false
+--                 primary key (id)
             );
 
         </sql>

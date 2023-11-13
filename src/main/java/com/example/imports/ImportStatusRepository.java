@@ -7,14 +7,16 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 public interface ImportStatusRepository extends JpaRepository<ImportStatus, Long> {
 
     @Transactional
     @Modifying
-    @Query("update ImportStatus is set is.status=com.example.imports.model.ImportStatus$Status.PROCESSING, is.startTime = ?2 where is.id = ?1")
-    void updateToProcessing(long importStatusId, LocalDateTime now);
+    @Query("update ImportStatus is set is.status = com.example.imports.model.ImportStatus$Status.PROCESSING, is.startTime = ?2 where is.id = ?1")
+    //void updateToProcessing(long importStatusId, LocalDateTime now);
+    void updateToProcessing(long importStatusId, Timestamp now);
 
     @Transactional
     @Modifying
