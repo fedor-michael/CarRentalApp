@@ -8,6 +8,8 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 @Configuration
 public class JdbcConfig {
 
+
+
     @Bean
     public SimpleJdbcInsert carInsert(JdbcTemplate jdbcTemplate) {
         return new SimpleJdbcInsert(jdbcTemplate)

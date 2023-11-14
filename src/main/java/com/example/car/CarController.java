@@ -4,6 +4,7 @@ import com.example.car.model.CarDto;
 import com.example.car.model.CreateCarCommand;
 import com.example.car.model.UpdateCarCommand;
 import com.example.imports.ImportService;
+import com.example.imports.exception.FileUploadException;
 import com.example.imports.model.ImportStatus;
 import com.example.imports.model.ImportStatusDto;
 import jakarta.validation.Valid;
@@ -25,6 +26,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.InputStreamReader;
+import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/cars")
@@ -68,5 +76,31 @@ public class CarController {
         importService.uploadCsvToDb(file.getBytes(), importStatusDto.id(), ImportStatus.EntityType.CAR);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(importStatusDto);
     }
+
+//    @SneakyThrows
+//    @PostMapping("/testUpload")
+//    public ResponseEntity testUpload(@RequestParam("file") MultipartFile file) {
+//        //ImportStatusDto importStatusDto = importService.saveNewImport(file.getOriginalFilename(), ImportStatus.EntityType.CAR);
+//        //importService.uploadCsvToDb(file.getBytes(), importStatusDto.id(), ImportStatus.EntityType.CAR);
+//
+//        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader((new ByteArrayInputStream(file.getBytes()))))) {
+//            bufferedReader
+//                    .lines()
+//                    .parallel()
+//                    .map(line -> line.split(","))
+//                    .map(args -> {
+//
+//                        return toCarParameters(args);
+//                    })
+//                    .forEach(v -> {
+//
+//                    });
+//        } catch (Exception e) {
+//            throw new FileUploadException(e.getMessage());
+//        }
+//
+//        return ResponseEntity.status(HttpStatus.ACCEPTED).body(null);
+//    }
+
 
 }

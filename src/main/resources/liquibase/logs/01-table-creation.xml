@@ -61,8 +61,8 @@
             (
                 id           bigint       not null AUTO_INCREMENT primary key,
                 entity       varchar(255),
-                submitTime   timestamp    not null,
-                startTime    timestamp,
+                submitTime   datetime    not null,
+                startTime    datetime,
                 fileName     varchar(255) not null,
                 status       varchar(255) not null,
                 processed    int          not null,

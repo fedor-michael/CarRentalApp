@@ -26,8 +26,8 @@ import java.time.LocalDateTime;
 @Setter
 @EqualsAndHashCode(of = "id")
 @ToString
-@Where(clause = "deleted = false")
-@SQLDelete(sql = "update importStatus set deleted = true where id = ?1") // todo zmieni pewnie się przy PostreSQL
+//@Where(clause = "deleted = false")
+//@SQLDelete(sql = "update importStatus set deleted = true where id = ?1") // todo zmieni pewnie się przy PostreSQL
 
 public class ImportStatus {
     @Id

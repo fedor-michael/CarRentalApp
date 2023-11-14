@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 public interface ImportStatusRepository extends JpaRepository<ImportStatus, Long> {
 
@@ -16,7 +17,7 @@ public interface ImportStatusRepository extends JpaRepository<ImportStatus, Long
     @Modifying
     @Query("update ImportStatus is set is.status = com.example.imports.model.ImportStatus$Status.PROCESSING, is.startTime = ?2 where is.id = ?1")
     //void updateToProcessing(long importStatusId, LocalDateTime now);
-    void updateToProcessing(long importStatusId, Timestamp now);
+    void updateToProcessing(long importStatusId, LocalDateTime now);
 
     @Transactional
     @Modifying
