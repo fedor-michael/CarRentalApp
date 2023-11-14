@@ -14,8 +14,7 @@ public class RentEndMileageValidator implements RentValidator {
     @Override
     public String validate(Map<String, Object> parameters) {
         return Optional.ofNullable(parameters.get("endmileage"))
-                .map(BigDecimal.class::cast)
-                .filter(v -> v.compareTo(BigDecimal.ZERO) >= 0)
+                .filter(v -> ((int) v) >= 0)
                 .map(v -> "")
                 .orElse("INVALID_END_MILEAGE");
     }

@@ -18,7 +18,6 @@
                 registration varchar(255),
                 isAvailable    boolean,
                 deleted    boolean default false
---                 primary key (id)
             );
         </sql>
     </changeSet>
@@ -36,7 +35,6 @@
                 startMileage int,
                 endMileage int,
                 deleted  boolean default false
---                 primary key (id)
             );
         </sql>
     </changeSet>
@@ -44,14 +42,14 @@
         <sql>
             create table users
             (
-                id      bigint not null AUTO_INCREMENT primary key,
-                name    varchar(255),
-                surname varchar(255),
-                personId varchar(255),
+                id          bigint not null AUTO_INCREMENT primary key,
+                name        varchar(255),
+                surname     varchar(255),
+                personId    varchar(255),
                 phoneNumber bigint,
-                email   varchar(255),
-                deleted boolean default false
---                 primary key (id)
+                email       varchar(255),
+                deleted     boolean default false,
+                UNIQUE (personId)
             );
         </sql>
     </changeSet>
@@ -61,14 +59,11 @@
             (
                 id           bigint       not null AUTO_INCREMENT primary key,
                 entity       varchar(255),
-                submitTime   datetime    not null,
-                startTime    datetime,
+                submitTime   datetime     not null,
                 fileName     varchar(255) not null,
                 status       varchar(255) not null,
-                processed    int          not null,
                 failedReason varchar(255),
                 deleted      boolean default false
---                 primary key (id)
             );
 
         </sql>

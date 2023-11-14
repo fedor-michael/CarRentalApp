@@ -1,11 +1,12 @@
 package com.example.user;
 
-import com.example.imports.ImportService;
+import com.example.imports.service.impl.ImportService;
 import com.example.imports.model.ImportStatus;
 import com.example.imports.model.ImportStatusDto;
 import com.example.user.model.CreateUserCommand;
 import com.example.user.model.UpdateUserCommand;
 import com.example.user.model.UserDto;
+import com.example.user.service.impl.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;

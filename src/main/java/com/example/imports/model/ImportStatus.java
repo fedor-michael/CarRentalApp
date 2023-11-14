@@ -26,9 +26,6 @@ import java.time.LocalDateTime;
 @Setter
 @EqualsAndHashCode(of = "id")
 @ToString
-//@Where(clause = "deleted = false")
-//@SQLDelete(sql = "update importStatus set deleted = true where id = ?1") // todo zmieni pewnie się przy PostreSQL
-
 public class ImportStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,11 +33,9 @@ public class ImportStatus {
     @Enumerated(EnumType.STRING)
     private EntityType entity;
     private LocalDateTime submitTime;
-    private LocalDateTime startTime;
     private String fileName;
     @Enumerated(EnumType.STRING)
     private Status status;
-    private int processed;
     private String failedReason;
 
     public ImportStatus(String fileName, EntityType entity) {
@@ -48,11 +43,10 @@ public class ImportStatus {
         this.entity = entity;
         status = Status.NEW;
         submitTime = LocalDateTime.now();
-        processed = 0;
     }
 
     public enum Status {
-        NEW, PROCESSING, SUCCESS, FAILED
+        NEW, SUCCESS, FAILED
     }
 
     public enum EntityType {

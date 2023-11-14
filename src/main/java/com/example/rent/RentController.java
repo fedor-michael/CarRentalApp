@@ -1,11 +1,12 @@
 package com.example.rent;
 
-import com.example.imports.ImportService;
+import com.example.imports.service.impl.ImportService;
 import com.example.imports.model.ImportStatus;
 import com.example.imports.model.ImportStatusDto;
 import com.example.rent.model.CreateRentCommand;
 import com.example.rent.model.RentDto;
 import com.example.rent.model.UpdateRentCommand;
+import com.example.rent.model.service.impl.RentService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;

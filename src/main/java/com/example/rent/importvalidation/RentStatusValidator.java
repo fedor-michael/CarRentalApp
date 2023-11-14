@@ -15,7 +15,6 @@ public class RentStatusValidator implements RentValidator {
         return Optional.ofNullable(parameters.get("status"))
                 .map(String::valueOf)
                 .filter(v -> !v.trim().isEmpty())
-                .filter(v -> v.length() <= 100)
                 .map(title -> "")
                 .orElse("INVALID_STATUS");
     }

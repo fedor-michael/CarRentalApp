@@ -33,7 +33,7 @@ public class UpdateUserCommand {
     @Min(value = 0, message = "PHONE_NUMBER_NOT_NEGATIVE")
     private Long phoneNumber;
 
-    @Pattern(regexp = "\\w+@\\w+\\.\\p{Lower}{1,3}", message = "EMAIL_WRONG_FORMAT")
+    @Pattern(regexp = ".+@.+", message = "EMAIL_WRONG_FORMAT")
     private String email;
 
     private Set<Long> rentID;

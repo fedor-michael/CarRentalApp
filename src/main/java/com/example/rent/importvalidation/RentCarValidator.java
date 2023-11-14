@@ -4,6 +4,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Map;
 import java.util.Optional;
 
@@ -14,8 +15,8 @@ public class RentCarValidator implements RentValidator {
     @Override
     public String validate(Map<String, Object> parameters) {
         return Optional.ofNullable(parameters.get("carid"))
-                .map(BigDecimal.class::cast)
-                .filter(v -> v.compareTo(BigDecimal.ZERO) >= 0)
+                .map(BigInteger.class::cast)
+                .filter(v -> v.compareTo(BigInteger.ZERO) >= 0)
                 .map(v -> "")
                 .orElse("INVALID_CAR_ID");
     }

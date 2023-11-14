@@ -1,6 +1,5 @@
 package com.example.user.importvalidation;
 
-import com.example.rent.importvalidation.RentValidator;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +8,7 @@ import java.util.Optional;
 
 @Service
 @ConditionalOnProperty(value = "user.validator", havingValue = "true")
-public class UserSurnameValidator implements RentValidator {
+public class UserSurnameValidator implements UserValidator {
 
     @Override
     public String validate(Map<String, Object> parameters) {
