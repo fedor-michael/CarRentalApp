@@ -30,7 +30,7 @@ import java.util.Set;
 @ToString(exclude = {"rents"})
 @Builder
 @Where(clause = "deleted = false")
-@SQLDelete(sql = "update users set deleted = true where id = ?1") // todo zmieni się przy PostreSQL
+@SQLDelete(sql = "update users set deleted = true where id = ?1")
 public class User {
 
     @Id

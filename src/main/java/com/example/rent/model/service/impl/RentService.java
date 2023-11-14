@@ -52,21 +52,6 @@ public class RentService implements com.example.rent.model.service.RentService {
     //todo
     // findRentsWithCar
 
-    //private Long id;
-    //    private LocalDate dateFrom;
-    //    private LocalDate dateTo;
-    //    @Enumerated(EnumType.STRING)
-    //    private RentStatus status;
-    //    @ManyToOne
-    //    @JoinColumn(name = "car_id") //todo tu może być zmiana przy postgreSQL
-    //    private Car car;
-    //    @ManyToOne
-    //    @JoinColumn(name = "user_id") //todo tu może być zmiana przy postgreSQL
-    //    private User user;
-    //    private Integer startMileage;
-    //    private Integer endMileage;
-    //    private boolean deleted;
-
     public RentDto save(CreateRentCommand command) {
         Car carToUpdate = carRepository.findById(command.getCarId())
                 .orElseThrow(() -> new EntityNotFoundException(Car.class.getSimpleName(), command.getCarId()));

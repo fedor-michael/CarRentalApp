@@ -40,10 +40,10 @@ public class CarService implements com.example.car.service.CarService {
                 .orElseThrow(() -> new EntityNotFoundException(Car.class.getSimpleName(), id));
     }
 
-    // todo
-    //findNewerThanYear
-    // findWithMileageLessThan
-    // findAvailable - zwraca liste lub seta
+    // todo metodki
+    //  findNewerThanYear
+    //  findWithMileageLessThan
+    //  findAvailable - zwraca liste lub seta
 
     public CarDto save(CreateCarCommand command) {
         Car savedCar = carRepository.save(Car.builder()

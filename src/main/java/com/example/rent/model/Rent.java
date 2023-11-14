@@ -31,7 +31,7 @@ import java.time.LocalDate;
 @EqualsAndHashCode(of = "id")
 @Builder
 @Where(clause = "deleted = false")
-@SQLDelete(sql = "update rents set deleted = true where id = ?1") // todo zmieni się przy PostreSQL
+@SQLDelete(sql = "update rents set deleted = true where id = ?1")
 public class Rent {
 
     @Id
@@ -42,10 +42,10 @@ public class Rent {
     @Enumerated(EnumType.STRING)
     private RentStatus status;
     @ManyToOne
-    @JoinColumn(name = "carId") //todo tu może być zmiana przy postgreSQL
+    @JoinColumn(name = "carId")
     private Car car;
     @ManyToOne
-    @JoinColumn(name = "userId") //todo tu może być zmiana przy postgreSQL
+    @JoinColumn(name = "userId")
     private User user;
     private Integer startMileage;
     private Integer endMileage;

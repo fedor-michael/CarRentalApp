@@ -30,7 +30,7 @@ import java.util.Set;
 @ToString(exclude = {"rents"})
 @Builder
 @Where(clause = "deleted = false")
-@SQLDelete(sql = "update books set deleted = true where id = ?1") // todo zmieni się przy PostreSQL
+@SQLDelete(sql = "update books set deleted = true where id = ?1")
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,7 +45,6 @@ public class Car {
 
     @OneToMany(mappedBy = "car")
     @Builder.Default
-    // todo tu możliwe że jakiś join
     private Set<Rent> rents = new HashSet<>();
 
 

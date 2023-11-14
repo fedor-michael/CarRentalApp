@@ -43,12 +43,12 @@ public class UpdateRentCommand {
     @Min(value = 0, message = "END_MILEAGE_NOT_LESS_THAN_ZERO")
     private Integer endMileage;
 
-    @AssertTrue(message = "DATE_FROM_BIGGER_THEN_DATE_TO") // todo uruchamiać to jakoś
+    @AssertTrue(message = "DATE_FROM_BIGGER_THEN_DATE_TO")
     private boolean isDateFromBeforeDateTo() {
         return dateFrom.isBefore(dateTo) || dateFrom.isEqual(dateTo);
     }
 
-    @AssertTrue(message = "START_MILEAGE_BIGGER_THEN_END_MILEAGE") // todo uruchamiać to jakoś
+    @AssertTrue(message = "START_MILEAGE_BIGGER_THEN_END_MILEAGE")
     private boolean isStartMileageBiggerThanEndMileage() {
         return startMileage < endMileage;
     }
