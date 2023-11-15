@@ -40,10 +40,16 @@ public class CarService implements com.example.car.service.CarService {
                 .orElseThrow(() -> new EntityNotFoundException(Car.class.getSimpleName(), id));
     }
 
-    // todo metodki
-    //  findNewerThanYear
-    //  findWithMileageLessThan
-    //  findAvailable - zwraca liste lub seta
+    @Transactional(readOnly = true)
+    public Page<CarDto> findNewerThan(Pageable pageable, int year) {
+        return carRepository.findAllNewerThan(year, pageable).map(CarDto::fromEntity);
+
+    }
+
+    @Transactional(readOnly = true)
+    public Page<CarDto> findAllFreeToRent(Pageable pageable) {
+        return carRepository.findAllFreeToRent(pageable).map(CarDto::fromEntity);
+    }
 
     public CarDto save(CreateCarCommand command) {
         Car savedCar = carRepository.save(Car.builder()
@@ -83,5 +89,6 @@ public class CarService implements com.example.car.service.CarService {
     public void deleteCar(Long id) {
         carRepository.deleteById(id);
     }
+
 
 }

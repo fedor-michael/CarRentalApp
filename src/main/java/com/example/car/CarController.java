@@ -4,9 +4,9 @@ import com.example.car.model.CarDto;
 import com.example.car.model.CreateCarCommand;
 import com.example.car.model.UpdateCarCommand;
 import com.example.car.service.impl.CarService;
-import com.example.imports.service.impl.ImportService;
 import com.example.imports.model.ImportStatus;
 import com.example.imports.model.ImportStatusDto;
+import com.example.imports.service.impl.ImportService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -34,9 +34,6 @@ public class CarController {
 
     private final CarService carService;
     private final ImportService importService;
-
-//    private final SimpleJdbcInsert carInsert;
-//    private final JdbcTemplate carJdbcTemplate;
 
     @GetMapping
     public Page<CarDto> findAll(@PageableDefault Pageable pageable) {
@@ -71,6 +68,16 @@ public class CarController {
         ImportStatusDto importStatusDto = importService.saveNewImport(file.getOriginalFilename(), ImportStatus.EntityType.CAR);
         importService.uploadCsvToDb(file.getBytes(), importStatusDto.id(), ImportStatus.EntityType.CAR);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(importStatusDto);
+    }
+
+    @GetMapping("/newer/{year}")
+    public Page<CarDto> findNewerThan(@PageableDefault Pageable pageable, @PathVariable int year) {
+        return carService.findNewerThan(pageable, year);
+    }
+
+    @GetMapping("/free")
+    public Page<CarDto> findAllFreeToRent(@PageableDefault Pageable pageable) {
+        return carService.findAllFreeToRent(pageable);
     }
 
 }

@@ -7,6 +7,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 public interface CarRepository extends JpaRepository<Car, Long> {
-    @Query(value = "select a from Car a left join fetch a.isAvailable") //todo to dopracować bo nie bedzie działać chyba
-    Page<Car> findAllFreeToRentCars(Pageable pageable);
+
+    @Query("SELECT a FROM Car a WHERE a.productionYear > ?1")
+    Page<Car> findAllNewerThan(int year, Pageable pageable);
+
+    @Query(value = "select * from cars a where a.isAvailable = true", nativeQuery = true)
+    Page<Car> findAllFreeToRent(Pageable pageable);
+
 }

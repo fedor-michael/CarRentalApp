@@ -18,4 +18,8 @@ public interface CarService {
 
     void deleteCar(Long id);
 
+    Page<CarDto> findNewerThan(Pageable pageable, int year);
+
+    Page<CarDto> findAllFreeToRent(Pageable pageable);
+
 }

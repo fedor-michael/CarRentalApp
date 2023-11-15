@@ -1,4 +1,4 @@
-package com.example.rent.model.service;
+package com.example.rent.service;
 
 import com.example.rent.model.CreateRentCommand;
 import com.example.rent.model.RentDto;

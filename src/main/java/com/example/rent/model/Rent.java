@@ -41,12 +41,15 @@ public class Rent {
     private LocalDate dateTo;
     @Enumerated(EnumType.STRING)
     private RentStatus status;
+
     @ManyToOne
     @JoinColumn(name = "carId")
     private Car car;
+
     @ManyToOne
     @JoinColumn(name = "userId")
     private User user;
+
     private Integer startMileage;
     private Integer endMileage;
     private boolean deleted;

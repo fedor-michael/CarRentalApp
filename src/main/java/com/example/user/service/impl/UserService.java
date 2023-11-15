@@ -41,8 +41,6 @@ public class UserService implements com.example.user.service.UserService {
                 .orElseThrow(() -> new EntityNotFoundException(User.class.getSimpleName(), id));
     }
 
-    // todo zrób jakieś fajne metodki
-
     public UserDto save(CreateUserCommand command) {
         User savedUser = userRepository.save(User.builder()
                 .name(command.getName())

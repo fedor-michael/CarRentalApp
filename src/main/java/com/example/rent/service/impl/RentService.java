@@ -1,4 +1,4 @@
-package com.example.rent.model.service.impl;
+package com.example.rent.service.impl;
 
 import com.example.car.CarRepository;
 import com.example.car.model.Car;
@@ -23,7 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class RentService implements com.example.rent.model.service.RentService {
+public class RentService implements com.example.rent.service.RentService {
 
     private final RentRepository rentRepository;
     private final CarRepository carRepository;
@@ -40,17 +40,6 @@ public class RentService implements com.example.rent.model.service.RentService {
                 .map(RentDto::fromEntity)
                 .orElseThrow(() -> new EntityNotFoundException(Rent.class.getSimpleName(), id));
     }
-
-    //todo
-    // find after date
-    // find before date
-    // find between dates
-
-    //todo
-    // findWithStatus
-
-    //todo
-    // findRentsWithCar
 
     public RentDto save(CreateRentCommand command) {
         Car carToUpdate = carRepository.findById(command.getCarId())
