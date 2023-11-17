@@ -1,0 +1,26 @@
+version: '3.1'
+
+services:
+  springboot-carrentalapp:
+    container_name: carrentalapp
+    image: carrentalapp
+    build: .
+    ports:
+      - 8080:8080
+    restart: always
+    depends_on:
+      - mysqldb
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/carrentalapp
+      SPRING_DATASOURCE_USERNAME: sa
+      SPRING_DATASOURCE_PASSWORD: 1234
+  mysqldb:
+    container_name: mysqldb
+    image: "mysql:5.7"
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: carrentalapp
+      MYSQL_USER: sa
+      MYSQL_PASSWORD: 1234
+      MYSQL_ROOT_PASSWORD: 1234
