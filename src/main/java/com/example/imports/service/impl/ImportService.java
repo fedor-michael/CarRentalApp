@@ -1,14 +1,14 @@
 package com.example.imports.service.impl;
 
-import com.example.car.importvalidation.CarValidator;
+import com.example.imports.validation.carvalidation.CarValidator;
 import com.example.exception.UnsupportedOperationException;
 import com.example.imports.ImportStatusRepository;
 import com.example.imports.exception.FileUploadException;
 import com.example.imports.exception.InvalidInsertArgumentsException;
 import com.example.imports.model.ImportStatus;
 import com.example.imports.model.ImportStatusDto;
-import com.example.rent.importvalidation.RentValidator;
-import com.example.user.importvalidation.UserValidator;
+import com.example.imports.validation.rentvalidation.RentValidator;
+import com.example.imports.validation.uservalidation.UserValidator;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
