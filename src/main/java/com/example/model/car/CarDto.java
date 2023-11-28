@@ -7,7 +7,7 @@ import lombok.Value;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@Value
+@Value //todo tu może być pies pogrzebany
 @Builder
 public class CarDto {
 
@@ -21,21 +21,21 @@ public class CarDto {
     boolean isAvailable;
     Set<Long> rentId;
 
-    public static CarDto fromEntity(Car car) {
-        return CarDto.builder()
-                .id(car.getId())
-                .vin(car.getVin())
-                .productionYear(car.getProductionYear())
-                .brand(car.getBrand())
-                .model(car.getModel())
-                .mileage(car.getMileage())
-                .registration(car.getRegistration())
-                .isAvailable(car.getIsAvailable())
-                .rentId(car.getRents()
-                        .stream()
-                        .map(Rent::getId)
-                        .collect(Collectors.toSet()))
-                .build();
-    }
+//    public static CarDto fromEntity(Car car) {
+//        return CarDto.builder()
+//                .id(car.getId())
+//                .vin(car.getVin())
+//                .productionYear(car.getProductionYear())
+//                .brand(car.getBrand())
+//                .model(car.getModel())
+//                .mileage(car.getMileage())
+//                .registration(car.getRegistration())
+//                .isAvailable(car.getIsAvailable())
+//                .rentId(car.getRents()
+//                        .stream()
+//                        .map(Rent::getId)
+//                        .collect(Collectors.toSet()))
+//                .build();
+//    }
 
 }

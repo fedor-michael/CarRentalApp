@@ -1,4 +1,4 @@
-package com.example.imports.model;
+package com.example.model.importstatus;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

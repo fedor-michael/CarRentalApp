@@ -2,6 +2,7 @@ package com.example.service.impl;
 
 import com.example.exception.EntityNotFoundException;
 import com.example.imports.exception.InvalidPersonIDException;
+import com.example.mapper.UserMapper;
 import com.example.repository.RentRepository;
 import com.example.repository.UserRepository;
 import com.example.model.user.CreateUserCommand;
@@ -31,13 +32,13 @@ public class UserService implements com.example.service.UserService {
 
     @Transactional(readOnly = true)
     public Page<UserDto> findAll(Pageable pageable) {
-        return userRepository.findAll(pageable).map(UserDto::fromEntity);
+        return userRepository.findAll(pageable).map(UserMapper.INSTANCE::fromEntity);
     }
 
     @Transactional(readOnly = true, isolation = Isolation.READ_UNCOMMITTED)
     public UserDto findById(Long id) {
         return userRepository.findById(id)
-                .map(UserDto::fromEntity)
+                .map(UserMapper.INSTANCE::fromEntity)
                 .orElseThrow(() -> new EntityNotFoundException(User.class.getSimpleName(), id));
     }
 
@@ -56,7 +57,7 @@ public class UserService implements com.example.service.UserService {
                         .flatMap(Optional::stream)
                         .collect(Collectors.toSet()))
                 .build());
-        return UserDto.fromEntity(savedUser);
+        return UserMapper.INSTANCE.fromEntity(savedUser);
     }
 
     public UserDto updateUser(UpdateUserCommand command) {
@@ -69,7 +70,7 @@ public class UserService implements com.example.service.UserService {
                     user.setEmail(command.getEmail());
                     return user;
                 }).orElseThrow(() -> new EntityNotFoundException(User.class.getSimpleName(), command.getId()));
-        return UserDto.fromEntity(userRepository.saveAndFlush(userToUpdate));
+        return UserMapper.INSTANCE.fromEntity(userRepository.saveAndFlush(userToUpdate));
     }
 
     public void deleteUser(Long id) {
