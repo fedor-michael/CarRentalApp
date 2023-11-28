@@ -5,7 +5,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
-    <changeSet id="20231002-fedormichal-01" author="fedormichal">
+    <changeSet id="20231002-fedormichal-01" author="fedormichal" context = "production">
         <sql>
             insert into cars (vin, productionYear, brand, model, mileage, registration, isAvailable)
             values ('WBA12345671', 2015, 'BMW', 'M3', 12000, 'WI 25678', false);
@@ -19,7 +19,7 @@
             values ('WBA12345675', 2019, 'BMW', '750Li', 5000, 'WI N777', true);
         </sql>
     </changeSet>
-    <changeSet id="20231002-fedormichal-02" author="fedormichal">
+    <changeSet id="20231002-fedormichal-02" author="fedormichal" context = "production">
         <sql>
             insert into rents (dateFrom, dateTo, status, carId, userId, startMileage, endMileage)
             values ('2023-01-02', '2023-01-10', 'DONE', 1, 1, 10000, 11000);
@@ -34,18 +34,18 @@
         </sql>
     </changeSet>
 
-    <changeSet id="20231002-fedormichal-03" author="fedormichal">
+    <changeSet id="20231002-fedormichal-03" author="fedormichal" context = "production">
         <sql>
             insert into users (name, surname, personId, phoneNumber, email)
-            values ('John', 'Travolta', 123456781, 0048501635954, 'john.travolta@gmail.com');
+            values ('John', 'Travolta', '123456781', 0048501635954, 'john.travolta@gmail.com');
             insert into users (name, surname, personId, phoneNumber, email)
-            values ('Jack', 'Kowalsky', 123456782, 0048501635955, 'jack.kowalsky@gmail.com');
+            values ('Jack', 'Kowalsky', '123456782', 0048501635955, 'jack.kowalsky@gmail.com');
             insert into users (name, surname, personId, phoneNumber, email)
-            values ('Michal', 'Fedor', 123456783, 0048501635956, 'michal.fedor@gmail.com');
+            values ('Michal', 'Fedor', '123456783', 0048501635956, 'michal.fedor@gmail.com');
             insert into users (name, surname, personId, phoneNumber, email)
-            values ('Jack', 'Carpenter', 123456784, 0048501635957, 'jack.carpenter@gmail.com');
+            values ('Jack', 'Carpenter', '123456784', 0048501635957, 'jack.carpenter@gmail.com');
             insert into users (name, surname, personId, phoneNumber, email)
-            values ('John', 'Black', 123456785, 0048501635958, 'john.black@gmail.com');
+            values ('John', 'Black', '123456785', 0048501635958, 'john.black@gmail.com');
         </sql>
     </changeSet>
 </databaseChangeLog>

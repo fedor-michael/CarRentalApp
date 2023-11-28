@@ -19,19 +19,19 @@ public class UserDto {
     String email;
     Set<Long> rentId;
 
-    public static UserDto fromEntity(User user) {
-        return UserDto.builder()
-                .id(user.getId())
-                .name(user.getName())
-                .surname(user.getSurname())
-                .personId(user.getPersonId())
-                .phoneNumber(user.getPhoneNumber())
-                .email(user.getEmail())
-                .rentId(user.getRents()
-                        .stream()
-                        .map(Rent::getId)
-                        .collect(Collectors.toSet()))
-                .build();
-    }
+//    public static UserDto fromEntity(User user) {
+//        return UserDto.builder()
+//                .id(user.getId())
+//                .name(user.getName())
+//                .surname(user.getSurname())
+//                .personId(user.getPersonId())
+//                .phoneNumber(user.getPhoneNumber())
+//                .email(user.getEmail())
+//                .rentId(user.getRents()
+//                        .stream()
+//                        .map(Rent::getId)
+//                        .collect(Collectors.toSet()))
+//                .build();
+//    }
 
 }

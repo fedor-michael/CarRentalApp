@@ -18,16 +18,16 @@ public class RentDto {
     int startMileage;
     int endMileage;
 
-    public static RentDto fromEntity(Rent rent) {
-        return RentDto.builder()
-                .id(rent.getId())
-                .dateFrom(rent.getDateFrom())
-                .dateTo(rent.getDateTo())
-                .status(rent.getStatus().toString())
-                .carId(rent.getCar().getId())
-                .userId(rent.getUser().getId())
-                .startMileage(rent.getStartMileage())
-                .endMileage(rent.getEndMileage())
-                .build();
-    }
+//    public static RentDto fromEntity(Rent rent) {
+//        return RentDto.builder()
+//                .id(rent.getId())
+//                .dateFrom(rent.getDateFrom())
+//                .dateTo(rent.getDateTo())
+//                .status(rent.getStatus().toString())
+//                .carId(rent.getCar().getId())
+//                .userId(rent.getUser().getId())
+//                .startMileage(rent.getStartMileage())
+//                .endMileage(rent.getEndMileage())
+//                .build();
+//    }
 }

@@ -1,12 +1,13 @@
-package com.example.imports.service.impl;
+package com.example.service.impl;
 
 import com.example.imports.validation.carvalidation.CarValidator;
 import com.example.exception.UnsupportedOperationException;
-import com.example.imports.ImportStatusRepository;
+import com.example.mapper.ImportStatusMapper;
+import com.example.repository.ImportStatusRepository;
 import com.example.imports.exception.FileUploadException;
 import com.example.imports.exception.InvalidInsertArgumentsException;
-import com.example.imports.model.ImportStatus;
-import com.example.imports.model.ImportStatusDto;
+import com.example.model.importstatus.ImportStatus;
+import com.example.model.importstatus.ImportStatusDto;
 import com.example.imports.validation.rentvalidation.RentValidator;
 import com.example.imports.validation.uservalidation.UserValidator;
 import jakarta.persistence.EntityNotFoundException;
@@ -28,12 +29,12 @@ import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
-import static com.example.imports.model.ImportStatus.EntityType;
+import static com.example.model.importstatus.ImportStatus.EntityType;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class ImportService implements com.example.imports.service.ImportService {
+public class ImportService implements com.example.service.ImportService {
 
     private final SimpleJdbcInsert carInsert;
     private final SimpleJdbcInsert rentInsert;
@@ -45,7 +46,7 @@ public class ImportService implements com.example.imports.service.ImportService 
 
     public ImportStatusDto saveNewImport(String fileName, EntityType entity) {
         ImportStatus importStatus = importStatusRepository.saveAndFlush(new ImportStatus(fileName, entity));
-        return ImportStatusDto.fromEntity(importStatus);
+        return ImportStatusMapper.INSTANCE.fromEntity(importStatus);
     }
 
     @SneakyThrows
@@ -150,7 +151,7 @@ public class ImportService implements com.example.imports.service.ImportService 
 
     @Transactional(readOnly = true, isolation = Isolation.READ_UNCOMMITTED)
     public ImportStatusDto findById(long id) {
-        return ImportStatusDto.fromEntity(importStatusRepository.findById(id).orElseThrow(EntityNotFoundException::new));
+        return ImportStatusMapper.INSTANCE.fromEntity(importStatusRepository.findById(id).orElseThrow(EntityNotFoundException::new));
     }
 
 }

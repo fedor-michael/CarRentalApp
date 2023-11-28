@@ -5,7 +5,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
-    <changeSet id="20231001-fedormichal-01" author="fedormichal">
+    <changeSet id="20231001-fedormichal-01" author="fedormichal" context = "production,test">
         <sql>
             create table cars
             (
@@ -17,11 +17,11 @@
                 mileage int,
                 registration varchar(255),
                 isAvailable    boolean,
-                deleted    boolean default false
+                deleted  boolean default false
             );
         </sql>
     </changeSet>
-    <changeSet id="20231001-fedormichal-02" author="fedormichal">
+    <changeSet id="20231001-fedormichal-02" author="fedormichal" context = "production,test">
         <validCheckSum>any</validCheckSum>
         <sql>
             create table rents
@@ -38,7 +38,7 @@
             );
         </sql>
     </changeSet>
-    <changeSet id="20231001-fedormichal-03" author="fedormichal">
+    <changeSet id="20231001-fedormichal-03" author="fedormichal" context = "production,test">
         <sql>
             create table users
             (
@@ -53,7 +53,7 @@
             );
         </sql>
     </changeSet>
-    <changeSet id="20231001-fedormichal-04" author="fedormichal">
+    <changeSet id="20231001-fedormichal-04" author="fedormichal" context = "production,test">
         <sql>
             create table importStatus
             (

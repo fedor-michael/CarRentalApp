@@ -1,8 +1,8 @@
 package com.example.controller;
 
-import com.example.imports.service.impl.ImportService;
-import com.example.imports.model.ImportStatus;
-import com.example.imports.model.ImportStatusDto;
+import com.example.service.impl.ImportService;
+import com.example.model.importstatus.ImportStatus;
+import com.example.model.importstatus.ImportStatusDto;
 import com.example.model.user.CreateUserCommand;
 import com.example.model.user.UpdateUserCommand;
 import com.example.model.user.UserDto;

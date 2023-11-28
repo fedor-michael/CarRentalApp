@@ -1,11 +1,12 @@
 package com.example.service.impl;
 
-import com.example.repository.CarRepository;
+import com.example.exception.EntityNotFoundException;
+import com.example.mapper.CarMapper;
 import com.example.model.car.Car;
 import com.example.model.car.CarDto;
 import com.example.model.car.CreateCarCommand;
 import com.example.model.car.UpdateCarCommand;
-import com.example.exception.EntityNotFoundException;
+import com.example.repository.CarRepository;
 import com.example.repository.RentRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,25 +31,26 @@ public class CarService implements com.example.service.CarService {
 
     @Transactional(readOnly = true)
     public Page<CarDto> findAll(Pageable pageable) {
-        return carRepository.findAll(pageable).map(CarDto::fromEntity);
+//        return carRepository.findAll(pageable).map(CarDto::fromEntity);
+        return carRepository.findAll(pageable).map(CarMapper.INSTANCE::fromEntity);
     }
 
     @Transactional(readOnly = true, isolation = Isolation.READ_UNCOMMITTED)
     public CarDto findById(Long id) {
         return carRepository.findById(id)
-                .map(CarDto::fromEntity)
+                .map(CarMapper.INSTANCE::fromEntity)
                 .orElseThrow(() -> new EntityNotFoundException(Car.class.getSimpleName(), id));
     }
 
     @Transactional(readOnly = true)
     public Page<CarDto> findNewerThan(Pageable pageable, int year) {
-        return carRepository.findAllNewerThan(year, pageable).map(CarDto::fromEntity);
+        return carRepository.findAllNewerThan(year, pageable).map(CarMapper.INSTANCE::fromEntity);
 
     }
 
     @Transactional(readOnly = true)
     public Page<CarDto> findAllFreeToRent(Pageable pageable) {
-        return carRepository.findAllFreeToRent(pageable).map(CarDto::fromEntity);
+        return carRepository.findAllFreeToRent(pageable).map(CarMapper.INSTANCE::fromEntity);
     }
 
     public CarDto save(CreateCarCommand command) {
@@ -68,7 +70,7 @@ public class CarService implements com.example.service.CarService {
                         .flatMap(Optional::stream)
                         .collect(Collectors.toSet()))
                 .build());
-        return CarDto.fromEntity(savedCar);
+        return CarMapper.INSTANCE.fromEntity(savedCar);
     }
 
     public CarDto updateCar(UpdateCarCommand command) {
@@ -83,7 +85,7 @@ public class CarService implements com.example.service.CarService {
                     car.setIsAvailable(command.getIsAvailable());
                     return car;
                 }).orElseThrow(() -> new EntityNotFoundException(Car.class.getSimpleName(), command.getId()));
-        return CarDto.fromEntity(carRepository.saveAndFlush(carToUpdate));
+        return CarMapper.INSTANCE.fromEntity(carRepository.saveAndFlush(carToUpdate));
     }
 
     public void deleteCar(Long id) {

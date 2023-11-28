@@ -1,17 +1,18 @@
 package com.example.service.impl;
 
-import com.example.repository.CarRepository;
-import com.example.model.car.Car;
 import com.example.exception.EntityNotFoundException;
 import com.example.exception.UnsupportedOperationException;
-import com.example.repository.RentRepository;
+import com.example.mapper.RentMapper;
+import com.example.model.car.Car;
 import com.example.model.rent.CreateRentCommand;
 import com.example.model.rent.Rent;
 import com.example.model.rent.RentDto;
 import com.example.model.rent.RentStatus;
 import com.example.model.rent.UpdateRentCommand;
-import com.example.repository.UserRepository;
 import com.example.model.user.User;
+import com.example.repository.CarRepository;
+import com.example.repository.RentRepository;
+import com.example.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -31,13 +32,13 @@ public class RentService implements com.example.service.RentService {
 
     @Transactional(readOnly = true)
     public Page<RentDto> findAll(Pageable pageable) {
-        return rentRepository.findAll(pageable).map(RentDto::fromEntity);
+        return rentRepository.findAll(pageable).map(RentMapper.INSTANCE::fromEntity);
     }
 
     @Transactional(readOnly = true, isolation = Isolation.READ_UNCOMMITTED)
     public RentDto findById(Long id) {
         return rentRepository.findById(id)
-                .map(RentDto::fromEntity)
+                .map(RentMapper.INSTANCE::fromEntity)
                 .orElseThrow(() -> new EntityNotFoundException(Rent.class.getSimpleName(), id));
     }
 
@@ -63,7 +64,7 @@ public class RentService implements com.example.service.RentService {
             }
             carToUpdate.setIsAvailable(false);
             carRepository.saveAndFlush(carToUpdate);
-            return RentDto.fromEntity(rentRepository.save(rentToSave));
+            return RentMapper.INSTANCE.fromEntity(rentRepository.save(rentToSave));
         } else {
             throw new UnsupportedOperationException("CANNOT_SAVE_WITH_STATUS_" + command.getStatus().toUpperCase());
         }
@@ -108,7 +109,7 @@ public class RentService implements com.example.service.RentService {
                     rent.setEndMileage(command.getEndMileage());
                     return rent;
                 }).orElseThrow(() -> new EntityNotFoundException(Rent.class.getSimpleName(), command.getId()));
-        return RentDto.fromEntity(rentRepository.saveAndFlush(rentToUpdate));
+        return RentMapper.INSTANCE.fromEntity(rentRepository.saveAndFlush(rentToUpdate));
     }
 
     public void deleteRent(Long id) {

@@ -1,9 +1,7 @@
-package com.example.imports.service;
+package com.example.service;
 
-import com.example.imports.model.ImportStatus;
-import com.example.imports.model.ImportStatusDto;
-
-import java.util.Map;
+import com.example.model.importstatus.ImportStatus;
+import com.example.model.importstatus.ImportStatusDto;
 
 public interface ImportService {
 
