@@ -45,7 +45,6 @@ public class CarControllerIT {
         createCarCommand.setModel("Passat");
         createCarCommand.setRegistration("KTA 22667");
         createCarCommand.setProductionYear(1998);
-        //createCarCommand.setRentsId();
         createCarCommand.setIsAvailable(true);
 
         createCarCommand = new CreateCarCommand();
@@ -54,7 +53,6 @@ public class CarControllerIT {
         createCarCommand.setModel("Mondeo");
         createCarCommand.setRegistration("KTA 14HR");
         createCarCommand.setProductionYear(2010);
-        //createCarCommand.setRentsId();
         createCarCommand.setIsAvailable(true);
 
         updateCarCommand.setId(20L);
@@ -63,7 +61,6 @@ public class CarControllerIT {
         updateCarCommand.setModel("Golf");
         updateCarCommand.setRegistration("WE 58890");
         updateCarCommand.setProductionYear(2000);
-        //updateCarCommand.setRentsId();
         updateCarCommand.setIsAvailable(true);
 
         updateCarCommand.setId(30L);
@@ -72,7 +69,6 @@ public class CarControllerIT {
         updateCarCommand.setModel("Fusion");
         updateCarCommand.setRegistration("WE 555555");
         updateCarCommand.setProductionYear(2011);
-        //updateCarCommand.setRentsId();
         updateCarCommand.setIsAvailable(true);
     }
 
