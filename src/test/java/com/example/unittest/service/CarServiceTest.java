@@ -22,7 +22,6 @@ import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.when;
 
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-//@ActiveProfiles("test")
 public class CarServiceTest {
 
     private Car car1;
