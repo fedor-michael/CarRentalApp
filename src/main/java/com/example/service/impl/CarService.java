@@ -31,7 +31,6 @@ public class CarService implements com.example.service.CarService {
 
     @Transactional(readOnly = true)
     public Page<CarDto> findAll(Pageable pageable) {
-//        return carRepository.findAll(pageable).map(CarDto::fromEntity);
         return carRepository.findAll(pageable).map(CarMapper.INSTANCE::fromEntity);
     }
 
