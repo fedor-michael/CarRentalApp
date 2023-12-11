@@ -1,5 +1,6 @@
 package com.example.unittest.repository;
 
+import com.example.mapper.CarMapper;
 import com.example.model.car.Car;
 import com.example.repository.CarRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -20,6 +21,7 @@ import java.util.Optional;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThrows;
 
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 @ActiveProfiles("test")
