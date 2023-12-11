@@ -73,7 +73,7 @@ public class CarControllerIT {
     }
 
     @Test
-    void shouldReturnAllCars() throws Exception {
+    public void shouldReturnAllCars() throws Exception {
         mockMvc.perform(post("/api/v1/cars")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(mapper.writeValueAsString(createCarCommand)))
