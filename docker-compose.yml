@@ -1,26 +1,13 @@
-#version: "3.8"
-#services:
-#  mysqldb:
-#    image: mysql:5.7
-#    environment:
-#      - MYSQL_ROOT_PASSWORD=rootpass
-#      - MYSQL_DATABASE=carrentalapp
-#      - MYSQL_USER=sa
-#      - MYSQL_PASSWORD=1234
-##      MYSQL_DATABASE: carrentalapp
-##      MYSQL_USER: root
-##      MYSQL_PASSWORD: root
-##      MYSQL_ROOT_PASSWORD: root
-#    ports:
-#      - 3306:3306
-#  carrentalapp:
-#    image: carrentalapp
-#    ports:
-#      - 8080:8080
-#    environment:
-#      - DATABASE_HOST=mysqldb
-#      - DATABASE_USER=sa
-#      - DATABASE_NAME=carrentalapp
-#      - DATABASE_PORT=3306
-#    depends_on:
-#      - mysqldb
+version: "3.8"
+services:
+  carrentalapp:
+    image: carrentalapp
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:h2:mem:carrentalapp
+      SPRING_DATASOURCE_USERNAME: sa
+      SPRING_DATASOURCE_PASSWORD: 1234
